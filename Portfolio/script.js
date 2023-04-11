@@ -1,3 +1,6 @@
+
+//Introduction Typewriting 
+
 var TxtType = function(el, toRotate, period) {
     this.toRotate = toRotate;
     this.el = el;
@@ -54,3 +57,38 @@ window.onload = function() {
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #0c0a0a}";
     document.body.appendChild(css);
 };
+
+
+
+//Timeline
+var items = document.querySelectorAll("li");
+
+function isItemInView(item){
+  var rect = item.getBoundingClientRect();
+  return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+function callbackFunc() {
+    for (var i = 0; i < items.length; i++) {
+      if (isItemInView(items[i])) {
+        items[i].classList.add("show");
+      }
+    }
+  }
+
+  // listen for events
+  var experienceBtn = document.getElementById("experience");
+
+  // Add a click event listener to the "Experience" button
+  experienceBtn.addEventListener("click", function() {
+    callbackFunc();
+  });
+  
+  window.addEventListener("scroll", callbackFunc);
+
+  
